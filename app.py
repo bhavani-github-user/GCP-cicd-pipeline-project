@@ -1,15 +1,13 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
-suggestions = []
 
 @app.route('/')
 def index():
-    return render_template('index.html', suggestions=suggestions)
+    return "🚀 Flask App with CI/CD via Cloud Build deployed successfully!"
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    suggestion = request.form['suggestion']
-    if suggestion:
-        suggestions.append(suggestion)
-    return redirect('/')
+if __name__ == '__main__':
+    # ✅ Fix: Use port 8080 and host 0.0.0.0 for Cloud Run compatibility
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
