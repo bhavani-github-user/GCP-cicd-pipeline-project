@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Anonymous Suggestion Box</title>
+    <title>FlashCAP Suggestion Box</title>
     <style>
-        body { font-family: Arial; padding: 20px; }
-        .box { max-width: 600px; margin: auto; }
-        textarea { width: 100%; height: 100px; }
-        ul { background: #f9f9f9; padding: 10px; border-radius: 5px; }
-        li { margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form input[type="text"] {
+            padding: 10px;
+            width: 300px;
+        }
+        form input[type="submit"] {
+            padding: 10px 15px;
+        }
+        .suggestions {
+            margin-top: 20px;
+        }
+        .suggestion {
+            background: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4CAF50;
+        }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>💬 Submit Your Suggestion</h2>
-        <form action="/submit" method="POST">
-            <textarea name="suggestion" placeholder="Type something..." required></textarea><br><br>
-            <button type="submit">Submit</button>
-        </form>
-
-        <h3>📝 Suggestions So Far:</h3>
-        <ul>
-            {% for s in suggestions %}
-                <li>{{ s }}</li>
-            {% else %}
-                <li>No suggestions yet. Be the first!</li>
-            {% endfor %}
-        </ul>
+    <h1>FlashCAP - Suggestion Box 💡</h1>
+    <form method="POST">
+        <input type="text" name="suggestion" placeholder="Your suggestion..." required />
+        <input type="submit" value="Submit" />
+    </form>
+    <div class="suggestions">
+        <h3>Submitted Suggestions:</h3>
+        {% for s in suggestions %}
+            <div class="suggestion">{{ s }}</div>
+        {% endfor %}
     </div>
 </body>
 </html>
